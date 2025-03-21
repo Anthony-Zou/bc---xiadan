@@ -1,0 +1,32 @@
+{
+  "name": "bcinvestflow",
+  "version": "1.0.0",
+  "description": "IntelliDeFi Investment Platform",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.2.0",
+    "ethers": "^6.0.0"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "chai": "^4.3.7",
+    "hardhat": "^2.22.19",
+    "mocha": "^10.8.2"
+  },
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy": "hardhat run scripts/deploy.js --network localhost",
+    "clean": "hardhat clean",
+    "node": "hardhat node"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
