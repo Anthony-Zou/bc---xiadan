@@ -31,6 +31,9 @@ contract IntelliDeFiToken is ERC20, Ownable {
     // Portfolio value tracking
     uint256 public totalPortfolioValue;
 
+    // Add a new variable to track the portfolio manager
+    address public portfolioManager;
+
     // Events
     event Invested(
         address indexed investor,
@@ -160,6 +163,25 @@ contract IntelliDeFiToken is ERC20, Ownable {
     function setFeePercentage(uint256 newFeePercentage) external onlyOwner {
         require(newFeePercentage <= 1000, "Fee percentage too high"); // Max 10%
         feePercentage = newFeePercentage;
+    }
+
+    /**
+     * @dev Set the portfolio manager address
+     * @param _portfolioManager Address of the portfolio manager
+     */
+    function setPortfolioManager(address _portfolioManager) external onlyOwner {
+        require(_portfolioManager != address(0), "Invalid manager address");
+        portfolioManager = _portfolioManager;
+    }
+
+    /**
+     * @dev Get the current portfolio composition
+     * Only callable by portfolio manager
+     */
+    function getPortfolioComposition() external view returns (string memory) {
+        // This would be implemented by the portfolio manager
+        // Just a placeholder for the interface
+        return "";
     }
 
     /**

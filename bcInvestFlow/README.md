@@ -50,6 +50,48 @@ npm run node
 npm run deploy
 ```
 
+## Frontend Development
+
+### Setup Frontend
+
+```bash
+# Install frontend dependencies
+cd frontend
+npm install
+```
+
+### Run Frontend Development Server
+
+```bash
+cd frontend
+npm run dev
+```
+
+The frontend will be available at `http://localhost:5173`
+
+### Testing with Frontend
+
+1. Start your local blockchain node:
+
+```bash
+npm run node
+```
+
+2. Deploy contracts:
+
+```bash
+npm run deploy
+```
+
+3. Start the frontend development server:
+
+```bash
+cd frontend
+npm run dev
+```
+
+4. Connect your MetaMask wallet to localhost:8545
+
 ## Project Structure
 
 - `contracts/`: Solidity smart contracts

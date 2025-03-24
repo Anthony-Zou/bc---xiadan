@@ -1,0 +1,1042 @@
+/* General Styles */
+:root {
+  --primary: #4CAF50;
+  --primary-light: #81C784;
+  --primary-dark: #388E3C;
+  --secondary: #2196F3;
+  --danger: #F44336;
+  --warning: #FFC107;
+  --success: #4CAF50;
+  --low-risk: #4CAF50;
+  --medium-risk: #FFC107;
+  --high-risk: #F44336;
+  --bg-light: #8ab9e778;
+  --text-dark: #212529;
+  --text-light: #6c757d;
+  --border-color: #dee2e6;
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+  --chart-height: 200px;
+  --border-radius-lg: 12px;
+  --border-radius-md: 8px;
+  --border-radius-sm: 4px;
+  --transition-speed: 0.3s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f8fa;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #333;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  color: #555;
+}
+
+.section {
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Loading & Error */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--primary);
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 1rem;
+}
+
+.spinner-small {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  display: inline-block;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes shine {
+  to {
+    left: 200%;
+  }
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border-left: 4px solid #c62828;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Error boundary styles */
+.error-boundary {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 800px;
+  background-color: #fff1f0;
+  border: 1px solid #ffa39e;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+}
+
+.error-boundary h2 {
+  color: #cf1322;
+  margin-bottom: 16px;
+}
+
+.error-boundary details {
+  margin: 16px 0;
+  padding: 8px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+.error-boundary summary {
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.error-boundary button {
+  margin-top: 16px;
+}
+
+/* Add special styling for network errors */
+.network-error {
+  background-color: #fff7e6;
+  border-left-color: #ffa940;
+  color: #d46b08;
+}
+
+/* Add connection status indicator */
+.connection-status {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
+  font-size: 0.85rem;
+}
+
+.connection-status .indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.connection-status .connected {
+  background-color: var(--success);
+}
+
+.connection-status .disconnected {
+  background-color: var(--danger);
+}
+
+/* Header & Account */
+.header-section {
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.account-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.account-details {
+  background-color: var(--bg-light);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.info-row {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.info-label {
+  font-weight: 600;
+  min-width: 150px;
+  color: var(--text-light);
+}
+
+.info-value {
+  font-family: 'Roboto Mono', monospace;
+}
+
+.info-value.address {
+  font-size: 0.85rem;
+  word-break: break-all;
+}
+
+.account-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-connect {
+  background-color: var(--secondary);
+  color: rgb(212, 216, 246);
+}
+
+.btn-connected {
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+.btn-mint {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-refresh, .btn-refresh-holdings {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-invest {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-withdraw {
+  background-color: var(--danger);
+  color: white;
+}
+
+.btn-add {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn:hover:not(.disabled, :disabled) {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.btn.disabled, .btn:disabled {
+  background-color: #e9ecef;
+  color: #adb5bd;
+  cursor: not-allowed;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+/* Forms */
+.form-input {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: var(--transition);
+}
+
+.form-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.form-select {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: var(--transition);
+  background-color: white;
+}
+
+.investment-form {
+  background-color: var(--bg-light);
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.selected-info {
+  flex-basis: 100%;
+  margin-top: 0.5rem;
+  color: var(--text-light);
+}
+
+.selected-risk {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.selected-address {
+  font-size: 0.85rem;
+  font-family: 'Roboto Mono', monospace;
+  word-break: break-all;
+}
+
+/* Portfolios */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.portfolio-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 2px solid transparent;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-card.selected {
+  border-color: var(--primary);
+  background-color: #f0f9f0;
+}
+
+.portfolio-card:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+.portfolio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.risk-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.risk-badge.risk-low {
+  background-color: #e8f5e9;
+  color: var(--low-risk);
+}
+
+.risk-badge.risk-medium {
+  background-color: #fff8e1;
+  color: var(--medium-risk);
+}
+
+.risk-badge.risk-high {
+  background-color: #ffebee;
+  color: var(--high-risk);
+}
+
+.portfolio-description {
+  color: var(--text-light);
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.portfolio-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  color: var(--text-light);
+}
+
+.metric-value {
+  font-weight: 600;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.composition-container {
+  margin-top: auto;
+  background-color: var(--bg-light);
+  border-radius: 8px;
+  padding: 1rem;
+  animation: slideIn 0.3s ease-out;
+}
+
+.composition-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.total-allocation {
+  color: var(--primary);
+}
+
+.asset-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.asset-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.375rem 0.5rem;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.asset-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.asset-color {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.asset-symbol {
+  font-weight: 500;
+}
+
+.asset-percentage {
+  color: var(--text-light);
+}
+
+.empty-message {
+  text-align: center;
+  color: var(--text-light);
+  padding: 0.75rem 0;
+  font-style: italic;
+}
+
+/* Performance */
+.performance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.performance-card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color);
+}
+
+.risk-border-low {
+  border-color: var(--low-risk);
+}
+
+.risk-border-medium {
+  border-color: var(--medium-risk);
+}
+
+.risk-border-high {
+  border-color: var(--high-risk);
+}
+
+.performance-header {
+  padding: 1rem;
+  color: white;
+}
+
+.risk-bg-low {
+  background-color: var(--low-risk);
+}
+
+.risk-bg-medium {
+  background-color: var(--medium-risk);
+}
+
+.risk-bg-high {
+  background-color: var(--high-risk);
+}
+
+.performance-metrics {
+  padding: 1.5rem;
+  background-color: white;
+}
+
+.performance-metric {
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.performance-chart {
+  margin-top: 1rem;
+  height: 120px;
+}
+
+.chart-placeholder {
+  height: 100%;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-placeholder.risk-low {
+  background: linear-gradient(to top right, #e8f5e9, #c8e6c9);
+}
+
+.chart-placeholder.risk-medium {
+  background: linear-gradient(to top right, #fff8e1, #ffecb3);
+}
+
+.chart-placeholder.risk-high {
+  background: linear-gradient(to top right, #ffebee, #ffcdd2);
+}
+
+.chart-placeholder::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: shine 1.5s infinite;
+}
+
+/* Portfolio Management */
+.portfolio-management {
+  padding: 1.5rem;
+}
+
+.panel {
+  background-color: var(--bg-light);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.asset-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.asset-address {
+  flex: 2;
+  min-width: 200px;
+}
+
+.asset-allocation {
+  flex: 1;
+  min-width: 100px;
+}
+
+.allocation-section {
+  margin-top: 2rem;
+}
+
+.risk-title {
+  padding: 0.75rem 1rem;
+  color: rgb(0, 0, 0);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.allocation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.allocation-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.asset-address {
+  margin-bottom: 0.75rem;
+  word-break: break-all;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.875rem;
+}
+
+.allocation-bar-container {
+  height: 24px;
+  background-color: #f1f1f1;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.allocation-bar {
+  height: 100%;
+  background-color: var(--primary);
+  border-radius: 12px;
+  transition: width var(--transition-speed) ease-out;
+}
+
+.allocation-percentage {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  line-height: 24px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: white;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Holdings */
+.holdings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.holdings-card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+.holdings-header {
+  padding: 1rem;
+  color: white;
+}
+
+.holdings-metrics {
+  padding: 1.5rem;
+  background-color: white;
+}
+
+.holdings-metric {
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.withdraw-form {
+  padding: 1rem;
+  background-color: var(--bg-light);
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .portfolio-grid,
+  .performance-grid,
+  .holdings-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 1rem;
+  }
+  
+  .portfolio-grid,
+  .performance-grid,
+  .holdings-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .asset-form {
+    flex-direction: column;
+  }
+  
+  .asset-form > * {
+    width: 100%;
+  }
+  
+  .account-info {
+    flex-direction: column;
+  }
+  
+  .account-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .portfolio-grid,
+  .performance-grid,
+  .holdings-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .portfolio-card {
+    min-height: auto;
+  }
+}
+
+/* Add tooltip styles */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip:hover::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+/* Add styles for error states */
+.input-error {
+  border-color: var(--danger) !important;
+}
+
+/* Add better accessibility styles */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Add dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-light: #1a202c;
+    --text-dark: #f7fafc;
+    --text-light: #cbd5e0;
+    --border-color: #2d3748;
+  }
+
+  body {
+    background-color: #0d1117;
+  }
+
+  .portfolio-card,
+  .performance-card,
+  .holdings-card {
+    background-color: #1a202c;
+  }
+
+  .btn-connected {
+    background-color: #2d3748;
+    color: #e2e8f0;
+  }
+}
+
+/* Add loading skeleton styles */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-light) 25%,
+    var(--border-color) 50%,
+    var(--bg-light) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Header styles */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+.account-summary {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.account-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.account-label {
+  color: var(--text-light);
+}
+
+.account-value {
+  font-weight: 600;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Welcome/Connect page */
+.connect-wallet-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  padding: 2rem 0;
+}
+
+.connect-card {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  width: 100%;
+  max-width: 600px;
+  overflow: hidden;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.connect-card-header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+.connect-card-header h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.connect-card-content {
+  padding: 2rem;
+}
+
+.feature-list {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 540px) {
+  .feature-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.feature-text h3 {
+  margin-bottom: 0.5rem;
+}
+
+.feature-text p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.connect-card-footer {
+  background-color: var(--bg-light);
+  padding: 1.5rem 2rem;
+  text-align: center;
+}
+
+.btn-connect-large {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  background-color: var(--primary);
+  color: white;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+.btn-connect-large:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.metamask-icon {
+  font-size: 1.2rem;
+}
+
+.wallet-helper {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}

@@ -19,6 +19,7 @@ contract IntelliDeFiPortfolioManager is Ownable {
         address tokenAddress; // Address of the ERC20 token
         uint256 allocation; // Target allocation in basis points (e.g., 5000 = 50%)
         bool isActive; // Whether this asset is active in the portfolio
+        string symbol; // Symbol of the token for better UI display
     }
 
     // Portfolio struct
@@ -27,6 +28,7 @@ contract IntelliDeFiPortfolioManager is Ownable {
         Asset[] assets; // Assets in this portfolio
         uint256 lastRebalanced; // Timestamp of last rebalance
         bool isActive; // Whether this portfolio is active
+        string description; // Description of the portfolio strategy
     }
 
     // Mapping from risk level to portfolio
@@ -40,7 +42,8 @@ contract IntelliDeFiPortfolioManager is Ownable {
     event AssetAdded(
         RiskLevel riskLevel,
         address assetAddress,
-        uint256 allocation
+        uint256 allocation,
+        string symbol
     );
     event AssetRemoved(RiskLevel riskLevel, address assetAddress);
     event AllocationUpdated(
@@ -49,6 +52,7 @@ contract IntelliDeFiPortfolioManager is Ownable {
         uint256 newAllocation
     );
     event PortfolioRebalanced(RiskLevel riskLevel, uint256 newTotalValue);
+    event PortfolioDescriptionUpdated(RiskLevel riskLevel, string description);
 
     constructor() Ownable(msg.sender) {}
 
@@ -56,10 +60,12 @@ contract IntelliDeFiPortfolioManager is Ownable {
      * @dev Adds a new portfolio to be managed
      * @param riskLevel Risk level of the portfolio
      * @param tokenAddress Address of the IntelliDeFiToken contract
+     * @param description Description of the portfolio strategy
      */
     function addPortfolio(
         RiskLevel riskLevel,
-        address tokenAddress
+        address tokenAddress,
+        string memory description
     ) external onlyOwner {
         require(
             address(portfolios[riskLevel].tokenContract) == address(0),
@@ -74,8 +80,23 @@ contract IntelliDeFiPortfolioManager is Ownable {
         );
         portfolios[riskLevel].lastRebalanced = block.timestamp;
         portfolios[riskLevel].isActive = true;
+        portfolios[riskLevel].description = description;
 
         emit PortfolioAdded(riskLevel, tokenAddress);
+    }
+
+    /**
+     * @dev Update portfolio description
+     * @param riskLevel Risk level of the portfolio
+     * @param description New description
+     */
+    function updatePortfolioDescription(
+        RiskLevel riskLevel,
+        string memory description
+    ) external onlyOwner {
+        require(portfolios[riskLevel].isActive, "Portfolio not active");
+        portfolios[riskLevel].description = description;
+        emit PortfolioDescriptionUpdated(riskLevel, description);
     }
 
     /**
@@ -83,11 +104,13 @@ contract IntelliDeFiPortfolioManager is Ownable {
      * @param riskLevel Risk level of the portfolio
      * @param assetAddress Address of the asset token
      * @param allocation Target allocation in basis points
+     * @param symbol Symbol of the token
      */
     function addAsset(
         RiskLevel riskLevel,
         address assetAddress,
-        uint256 allocation
+        uint256 allocation,
+        string memory symbol
     ) external onlyOwner {
         require(portfolios[riskLevel].isActive, "Portfolio not active");
         require(assetAddress != address(0), "Invalid asset address");
@@ -112,12 +135,13 @@ contract IntelliDeFiPortfolioManager is Ownable {
         Asset memory newAsset = Asset({
             tokenAddress: assetAddress,
             allocation: allocation,
-            isActive: true
+            isActive: true,
+            symbol: symbol
         });
 
         portfolios[riskLevel].assets.push(newAsset);
 
-        emit AssetAdded(riskLevel, assetAddress, allocation);
+        emit AssetAdded(riskLevel, assetAddress, allocation, symbol);
     }
 
     /**
@@ -284,7 +308,12 @@ contract IntelliDeFiPortfolioManager is Ownable {
     )
         external
         view
-        returns (address tokenAddress, uint256 allocation, bool isActive)
+        returns (
+            address tokenAddress,
+            uint256 allocation,
+            bool isActive,
+            string memory symbol
+        )
     {
         require(
             index < portfolios[riskLevel].assets.length,
@@ -292,7 +321,22 @@ contract IntelliDeFiPortfolioManager is Ownable {
         );
 
         Asset memory asset = portfolios[riskLevel].assets[index];
-        return (asset.tokenAddress, asset.allocation, asset.isActive);
+        return (
+            asset.tokenAddress,
+            asset.allocation,
+            asset.isActive,
+            asset.symbol
+        );
+    }
+
+    /**
+     * @dev Get portfolio description
+     * @param riskLevel Risk level of the portfolio
+     */
+    function getPortfolioDescription(
+        RiskLevel riskLevel
+    ) external view returns (string memory) {
+        return portfolios[riskLevel].description;
     }
 
     /**

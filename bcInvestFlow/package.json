@@ -21,7 +21,8 @@
     "test": "hardhat test",
     "deploy": "hardhat run scripts/deploy.js --network localhost",
     "clean": "hardhat clean",
-    "node": "hardhat node"
+    "node": "hardhat node",
+    "postcompile": "cp -r artifacts frontend/src/"
   },
   "engines": {
     "node": ">=18.0.0"
