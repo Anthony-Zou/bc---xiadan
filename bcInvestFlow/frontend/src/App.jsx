@@ -946,13 +946,13 @@ function App() {
         </>
       )}
 
-      {toast.visible && (
+      {/* {toast.visible && (
         <Toast
           message={toast.message}
           type={toast.type}
           onClose={() => setToast({ ...toast, visible: false })}
         />
-      )}
+      )} */}
     </div>
   );
 }

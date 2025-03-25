@@ -12,7 +12,7 @@ const PortfolioManagement = ({
     <div className="section portfolio-management">
       <h2>Portfolio Composition Management</h2>
 
-      <div className="panel add-asset">
+      {/* <div className="panel add-asset">
         <h3>Add New Asset</h3>
         <div className="asset-form">
           <div className="form-group">
@@ -106,7 +106,7 @@ const PortfolioManagement = ({
             )}
           </button>
         </div>
-      </div>
+      </div> */}
 
       <div className="portfolio-allocations">
         {Object.entries(assetAllocations).map(([risk, assets]) => (
